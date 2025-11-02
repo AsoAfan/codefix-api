@@ -1,98 +1,374 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# CodFix API
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+A comprehensive RESTful API built with NestJS for a Q&A and Blog Platform similar to Stack Overflow. This API supports user authentication, post management, comments (answers), voting system, and tag categorization.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Features
 
-## Description
+- 🔐 **JWT Authentication & Authorization** - Secure user authentication with role-based access control
+- 📝 **Post Management** - Create, read, update, and delete blog posts/questions
+- 💬 **Comment System** - Comments serve as answers/responses to posts
+- ⬆️⬇️ **Voting System** - Upvote/downvote comments with automatic score calculation
+- 🏷️ **Tag System** - Categorize posts with tags
+- 📊 **Pagination & Filtering** - Efficient data retrieval with search, filtering, and sorting
+- 📖 **API Documentation** - Interactive Swagger/OpenAPI documentation
+- ✅ **Comprehensive Testing** - Unit and E2E tests with high coverage
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Tech Stack
 
-## Project setup
+- **Framework**: NestJS 11
+- **Language**: TypeScript
+- **Database**: PostgreSQL
+- **ORM**: TypeORM
+- **Authentication**: JWT (Passport)
+- **Validation**: class-validator, class-transformer
+- **Documentation**: Swagger/OpenAPI
+- **Testing**: Jest, Supertest
 
+## Prerequisites
+
+- Node.js (v18 or higher)
+- pnpm (or npm/yarn)
+- PostgreSQL (v12 or higher)
+
+## Installation
+
+1. Clone the repository:
 ```bash
-$ pnpm install
+git clone <repository-url>
+cd codfix-api
 ```
 
-## Compile and run the project
-
+2. Install dependencies:
 ```bash
-# development
-$ pnpm run start
-
-# watch mode
-$ pnpm run start:dev
-
-# production mode
-$ pnpm run start:prod
+pnpm install
 ```
 
-## Run tests
+3. Set up environment variables:
+Create a `.env` file in the root directory:
+```env
+# Database
+DB_HOST=localhost
+DB_PORT=5432
+DB_USERNAME=postgres
+DB_PASSWORD=aso123456
+DB_DATABASE=codefix
 
-```bash
-# unit tests
-$ pnpm run test
+# JWT
+JWT_SECRET=your-secret-key-change-in-production
+JWT_EXPIRES_IN=7d
 
-# e2e tests
-$ pnpm run test:e2e
-
-# test coverage
-$ pnpm run test:cov
+# Application
+PORT=3000
 ```
 
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
-
+4. Create PostgreSQL database:
 ```bash
-$ pnpm install -g @nestjs/mau
-$ mau deploy
+createdb codefix
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+5. Run the application:
+```bash
+# Development mode with hot-reload
+pnpm start:dev
 
-## Resources
+# Production mode
+pnpm build
+pnpm start:prod
+```
 
-Check out a few resources that may come in handy when working with NestJS:
+The application will start on `http://localhost:3000` (or the PORT specified in your `.env` file).
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+## API Documentation (Swagger)
 
-## Support
+Once the application is running, access the interactive API documentation at:
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+**http://localhost:3000/api**
 
-## Stay in touch
+The Swagger UI provides:
+- Complete API endpoint documentation
+- Interactive testing interface (Try it out)
+- Request/response schemas
+- Authentication support (click "Authorize" button)
+- Example requests and responses
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+### Using Swagger:
+
+1. Open `http://localhost:3000/api` in your browser
+2. Click the **"Authorize"** button at the top
+3. For public endpoints (register/login), you can test without authentication
+4. For protected endpoints, register/login first to get a JWT token, then:
+   - Click "Authorize"
+   - Enter: `Bearer <your-jwt-token>`
+   - Click "Authorize" to save
+5. Now you can test protected endpoints directly from Swagger
+
+## API Endpoints
+
+### Authentication (`/auth`)
+
+- `POST /auth/register` - Register a new user (Public)
+  - Body: `{ username, email, password }`
+  - Returns: `{ access_token, user }`
+
+- `POST /auth/login` - Login user (Public)
+  - Body: `{ email, password }`
+  - Returns: `{ access_token, user }`
+
+### Posts (`/posts`)
+
+- `POST /posts` - Create a new post (Auth required)
+  - Body: `{ title, body, tags?: number[] }`
+  
+- `GET /posts` - Get all posts with pagination (Public)
+  - Query params: `page`, `limit`, `search`, `authorId`, `tagId`, `sortBy`, `order`
+  - Returns: Paginated response with metadata
+
+- `GET /posts/:id` - Get a single post (Public)
+  - Automatically increments view count
+
+- `PATCH /posts/:id` - Update a post (Auth required, owner only)
+  - Body: `{ title?, body?, tags? }`
+
+- `DELETE /posts/:id` - Delete a post (Auth required, owner only)
+
+### Comments (`/comments`)
+
+- `POST /comments` - Create a comment/answer (Auth required)
+  - Body: `{ postId, content }`
+
+- `GET /comments/post/:postId` - Get all comments for a post (Public)
+  - Returns: Comments sorted by score (descending)
+
+- `PATCH /comments/:id` - Update a comment (Auth required, owner only)
+  - Body: `{ content }`
+
+- `DELETE /comments/:id` - Delete a comment (Auth required, owner only)
+
+- `POST /comments/:id/vote` - Vote on a comment (Auth required)
+  - Body: `{ type: 'upvote' | 'downvote' }`
+  - Toggles vote if same type is applied again
+
+- `DELETE /comments/:id/vote` - Remove vote from comment (Auth required)
+
+## Testing
+
+### Run All Tests
+
+```bash
+# Run unit tests
+pnpm test
+
+# Run tests in watch mode
+pnpm test:watch
+
+# Run tests with coverage report
+pnpm test:cov
+
+# Run E2E tests
+pnpm test:e2e
+```
+
+### Test Structure
+
+- **Unit Tests** (`src/**/*.spec.ts`):
+  - Service layer tests with mocked dependencies
+  - Controller layer tests
+  - Test all business logic and error handling
+
+- **E2E Tests** (`test/*.e2e-spec.ts`):
+  - Full integration tests with real database
+  - Test complete request/response cycles
+  - Test authentication flows
+  - Test error scenarios and edge cases
+
+### Test Coverage
+
+The test suite covers:
+- ✅ All endpoints (auth, posts, comments)
+- ✅ Authentication and authorization
+- ✅ Validation and error handling
+- ✅ Business logic (voting, pagination, filtering)
+- ✅ Edge cases and error scenarios
+
+## Database Schema
+
+### Entities
+
+- **User**: Users with authentication, reputation, profile info
+- **Post**: Blog posts/questions with title, body, tags, views
+- **Comment**: Comments/answers on posts with voting scores
+- **Vote**: Individual votes on comments (upvote/downvote)
+- **Tag**: Tags for categorizing posts
+
+### Relationships
+
+- User → Posts (One-to-Many)
+- User → Comments (One-to-Many)
+- User → Votes (One-to-Many)
+- Post → Comments (One-to-Many)
+- Post → Tags (Many-to-Many)
+- Comment → Votes (One-to-Many)
+
+## Project Structure
+
+```
+src/
+├── auth/              # Authentication module
+│   ├── decorators/    # @CurrentUser, @Public, @Roles
+│   ├── dtos/          # Register, Login DTOs
+│   ├── guards/        # JWT auth guard, Roles guard
+│   ├── strategies/    # JWT strategy
+│   ├── auth.controller.ts
+│   ├── auth.service.ts
+│   └── auth.module.ts
+├── user/              # User module
+│   ├── dtos/          # User DTOs
+│   ├── users.entity.ts
+│   ├── user.controller.ts
+│   ├── user.service.ts
+│   └── user.module.ts
+├── post/              # Post module
+│   ├── dtos/          # Post DTOs (create, update, query, response)
+│   ├── post.entity.ts
+│   ├── post.controller.ts
+│   ├── post.service.ts
+│   └── post.module.ts
+├── comment/           # Comment module
+│   ├── dtos/          # Comment DTOs
+│   ├── comment.entity.ts
+│   ├── comment.controller.ts
+│   ├── comment.service.ts
+│   └── comment.module.ts
+├── vote/              # Vote module
+│   ├── vote.entity.ts
+│   └── vote.module.ts
+├── tag/               # Tag module
+│   ├── tag.entity.ts
+│   └── tag.module.ts
+├── app.module.ts      # Root module
+└── main.ts            # Application entry point
+
+test/
+├── helpers/           # Test utilities
+├── auth.e2e-spec.ts   # Auth E2E tests
+├── posts.e2e-spec.ts  # Posts E2E tests
+└── comments.e2e-spec.ts # Comments E2E tests
+```
+
+## Development
+
+### Code Style
+
+The project uses:
+- ESLint for code linting
+- Prettier for code formatting
+
+```bash
+# Format code
+pnpm format
+
+# Lint code
+pnpm lint
+```
+
+### Environment Setup
+
+Make sure your PostgreSQL database is running and accessible with the credentials specified in your `.env` file or `app.module.ts`.
+
+The application uses TypeORM with `synchronize: true` in development mode, which automatically creates/updates database tables based on your entities.
+
+**⚠️ Warning**: Set `synchronize: false` in production and use migrations instead.
+
+## API Usage Examples
+
+### 1. Register a New User
+
+```bash
+curl -X POST http://localhost:3000/auth/register \
+  -H "Content-Type: application/json" \
+  -d '{
+    "username": "johndoe",
+    "email": "john@example.com",
+    "password": "securepassword123"
+  }'
+```
+
+### 2. Login
+
+```bash
+curl -X POST http://localhost:3000/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{
+    "email": "john@example.com",
+    "password": "securepassword123"
+  }'
+```
+
+Save the `access_token` from the response.
+
+### 3. Create a Post
+
+```bash
+curl -X POST http://localhost:3000/posts \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer YOUR_ACCESS_TOKEN" \
+  -d '{
+    "title": "How to use NestJS?",
+    "body": "This is a detailed explanation of how to use NestJS...",
+    "tags": [1, 2]
+  }'
+```
+
+### 4. Get All Posts (with pagination)
+
+```bash
+curl "http://localhost:3000/posts?page=1&limit=10&search=nestjs"
+```
+
+### 5. Create a Comment
+
+```bash
+curl -X POST http://localhost:3000/comments \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer YOUR_ACCESS_TOKEN" \
+  -d '{
+    "postId": 1,
+    "content": "This is a helpful answer/comment"
+  }'
+```
+
+### 6. Vote on a Comment
+
+```bash
+curl -X POST http://localhost:3000/comments/1/vote \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer YOUR_ACCESS_TOKEN" \
+  -d '{
+    "type": "upvote"
+  }'
+```
+
+## Best Practices Implemented
+
+- ✅ **Validation**: All inputs validated with class-validator
+- ✅ **Error Handling**: Proper HTTP status codes and error messages
+- ✅ **Security**: Password hashing with bcrypt, JWT authentication
+- ✅ **Authorization**: Ownership checks for update/delete operations
+- ✅ **Response DTOs**: Consistent API response structure
+- ✅ **Pagination**: Efficient data retrieval with metadata
+- ✅ **Transactions**: Database transactions for vote operations
+- ✅ **Type Safety**: Full TypeScript support
+- ✅ **Documentation**: Comprehensive Swagger documentation
+- ✅ **Testing**: Unit and E2E tests
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
 ## License
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+This project is licensed under the UNLICENSED License.
