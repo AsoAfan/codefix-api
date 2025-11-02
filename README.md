@@ -34,7 +34,7 @@ A comprehensive RESTful API built with NestJS for a Q&A and Blog Platform simila
 
 1. Clone the repository:
 ```bash
-git clone <repository-url>
+git clone https://github.com/AsoAfan/codefix-api.git
 cd codfix-api
 ```
 
@@ -43,40 +43,17 @@ cd codfix-api
 pnpm install
 ```
 
-3. Set up environment variables:
-Create a `.env` file in the root directory:
-```env
-# Database
-DB_HOST=localhost
-DB_PORT=5432
-DB_USERNAME=postgres
-DB_PASSWORD=aso123456
-DB_DATABASE=codefix
+3. Update db credientials in `app.module.ts`
 
-# JWT
-JWT_SECRET=your-secret-key-change-in-production
-JWT_EXPIRES_IN=7d
-
-# Application
-PORT=3000
-```
-
-4. Create PostgreSQL database:
-```bash
-createdb codefix
-```
+4. Create PostgreSQL database
 
 5. Run the application:
 ```bash
 # Development mode with hot-reload
 pnpm start:dev
-
-# Production mode
-pnpm build
-pnpm start:prod
 ```
 
-The application will start on `http://localhost:3000` (or the PORT specified in your `.env` file).
+The application will start on `http://localhost:3000`.
 
 ## API Documentation (Swagger)
 
