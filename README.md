@@ -4,14 +4,14 @@ A comprehensive RESTful API built with NestJS for a Q&A and Blog Platform simila
 
 ## Features
 
-- 🔐 **JWT Authentication & Authorization** - Secure user authentication with role-based access control
-- 📝 **Post Management** - Create, read, update, and delete blog posts/questions
-- 💬 **Comment System** - Comments serve as answers/responses to posts
-- ⬆️⬇️ **Voting System** - Upvote/downvote comments with automatic score calculation
-- 🏷️ **Tag System** - Categorize posts with tags
-- 📊 **Pagination & Filtering** - Efficient data retrieval with search, filtering, and sorting
-- 📖 **API Documentation** - Interactive Swagger/OpenAPI documentation
-- ✅ **Comprehensive Testing** - Unit and E2E tests with high coverage
+- **JWT Authentication & Authorization** - Secure user authentication with role-based access control
+- **Post Management** - Create, read, update, and delete blog posts/questions
+- **Comment System** - Comments serve as answers/responses to posts
+- **Voting System** - Upvote/downvote comments with automatic score calculation
+- **Tag System** - Categorize posts with tags
+- **Pagination & Filtering** - Efficient data retrieval with search, filtering, and sorting
+- **API Documentation** - Interactive Swagger/OpenAPI documentation
+- **Comprehensive Testing** - Unit and E2E tests with high coverage
 
 ## Tech Stack
 
@@ -161,11 +161,11 @@ pnpm test:e2e
 ### Test Coverage
 
 The test suite covers:
-- ✅ All endpoints (auth, posts, comments)
-- ✅ Authentication and authorization
-- ✅ Validation and error handling
-- ✅ Business logic (voting, pagination, filtering)
-- ✅ Edge cases and error scenarios
+- All endpoints (auth, posts, comments)
+- Authentication and authorization
+- Validation and error handling
+- Business logic (voting, pagination, filtering)
+- Edge cases and error scenarios
 
 ## Database Schema
 
@@ -254,7 +254,7 @@ Make sure your PostgreSQL database is running and accessible with the credential
 
 The application uses TypeORM with `synchronize: true` in development mode, which automatically creates/updates database tables based on your entities.
 
-**⚠️ Warning**: Set `synchronize: false` in production and use migrations instead.
+**Warning**: Set `synchronize: false` in production and use migrations instead.
 
 ## API Usage Examples
 
@@ -327,16 +327,16 @@ curl -X POST http://localhost:3000/comments/1/vote \
 
 ## Best Practices Implemented
 
-- ✅ **Validation**: All inputs validated with class-validator
-- ✅ **Error Handling**: Proper HTTP status codes and error messages
-- ✅ **Security**: Password hashing with bcrypt, JWT authentication
-- ✅ **Authorization**: Ownership checks for update/delete operations
-- ✅ **Response DTOs**: Consistent API response structure
-- ✅ **Pagination**: Efficient data retrieval with metadata
-- ✅ **Transactions**: Database transactions for vote operations
-- ✅ **Type Safety**: Full TypeScript support
-- ✅ **Documentation**: Comprehensive Swagger documentation
-- ✅ **Testing**: Unit and E2E tests
+- **Validation**: All inputs validated with class-validator
+- **Error Handling**: Proper HTTP status codes and error messages
+- **Security**: Password hashing with bcrypt, JWT authentication
+- **Authorization**: Ownership checks for update/delete operations
+- **Response DTOs**: Consistent API response structure
+- **Pagination**: Efficient data retrieval with metadata
+- **Transactions**: Database transactions for vote operations
+- **Type Safety**: Full TypeScript support
+- **Documentation**: Comprehensive Swagger documentation
+- **Testing**: Unit and E2E tests
 
 ## Contributing
 
@@ -345,7 +345,3 @@ curl -X POST http://localhost:3000/comments/1/vote \
 3. Commit your changes (`git commit -m 'Add some amazing feature'`)
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
-
-## License
-
-This project is licensed under the UNLICENSED License.
